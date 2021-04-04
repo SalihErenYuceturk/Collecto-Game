@@ -22,11 +22,10 @@ public class Board
     }
 
     /**
-     * Creates and returns a valid starting board.
-     * Uses the helper methods in BoardChecker to ensure a valid board is created.
+     * Creates and returns a valid starting board. Uses the helper methods in BoardChecker to ensure a valid board is
+     * created.
      *
      * @return A 2D array of string that is a valid game board.
-     * @ensures A valid stating board represented in 2D array is created.
      */
     static String[][] createBoard()
     {
@@ -65,8 +64,6 @@ public class Board
      * Updates the state of the board.
      *
      * @param boardIn The new state of the board.
-     * @requires boardIn != null
-     * @ensures The board is updated to the board that is put in.
      */
     public void setBoard(String[][] boardIn)
     {
@@ -77,7 +74,6 @@ public class Board
      * Gives the board.
      *
      * @return The current state of the board.
-     * @requires this.board != null
      */
     public String[][] getBoard()
     {
@@ -86,8 +82,6 @@ public class Board
 
     /**
      * Prints the current state of the board to the console.
-     *
-     * @requires this.board != null
      */
     public void printBoard()
     {
@@ -102,8 +96,6 @@ public class Board
      * Updates the valid single move list.
      *
      * @param singleMoveListIn A new list of valid single moves.
-     * @requires The list of single moves given is valid or empty of no valid moves exist.
-     * @ensures The list of single moves is updated.
      */
     public void setSingleMoveList(List<Integer> singleMoveListIn)
     {
@@ -115,7 +107,6 @@ public class Board
      * Gives the current list of valid single moves.
      *
      * @return List of single moves.
-     * @requires singleMoveList != null
      */
     public List<Integer> getSingleMoveList()
     {
@@ -126,8 +117,6 @@ public class Board
      * Updates the list of valid double moves.
      *
      * @param doubleMoveListIn A new list of valid double moves.
-     * @requires The list of double moves given is valid or empty of no valid moves exist.
-     * @ensures The list of double moves is updated.
      */
     public void setDoubleMoveList(List<Integer> doubleMoveListIn)
     {
@@ -139,7 +128,6 @@ public class Board
      * Gives the current list of valid double moves.
      *
      * @return List of double moves.
-     * @requires doubleMoveList != null
      */
     public List<Integer> getDoubleMoveList()
     {

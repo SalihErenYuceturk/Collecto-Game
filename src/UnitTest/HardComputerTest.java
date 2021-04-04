@@ -51,7 +51,7 @@ public class HardComputerTest
     void makeDoubleMoveEasy()
     {
         List<Integer> doubleMoveList = BoardController.listDoubleMove(testArrayForDoubleMove);
-        testHardComputer.makeDoubleMove(doubleMoveList, testArrayForDoubleMove);
+        testHardComputer.makeDoubleMove(doubleMoveList);
         assertTrue(doubleMoveList.contains(testHardComputer.getFirstMove()));
         assertTrue(doubleMoveList.contains(testHardComputer.getSecondMove()));
     }

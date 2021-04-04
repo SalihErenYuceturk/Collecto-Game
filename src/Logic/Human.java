@@ -1,12 +1,11 @@
 package Logic;
 
-public class Human extends GeneralPlayer
+public class Human extends Player
 {
     /**
      * Class constructor.
      *
      * @param nameIn Name of the player. A name is chosen regardless of the kind of player.
-     * @requires nameIn != null
      */
     public Human(String nameIn)
     {
@@ -19,8 +18,6 @@ public class Human extends GeneralPlayer
      * Receives as move from the human player input.
      *
      * @param moveIn An integer from 0 to 27 as the move.
-     * @requires moveIn to be a valid move
-     * @ensures singleMove is updated to the most current choice
      */
     public void setSingleMove(int moveIn)
     {
@@ -32,8 +29,6 @@ public class Human extends GeneralPlayer
      *
      * @param firstMoveIn  The first move.
      * @param secondMoveIn The second move.
-     * @requires firstMoveIn and secondMoveIn are valid moves
-     * @ensures doubleMove is updated to the most current choice
      */
     public void setDoubleMove(int firstMoveIn, int secondMoveIn)
     {

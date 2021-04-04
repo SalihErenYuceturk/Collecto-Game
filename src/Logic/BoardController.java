@@ -13,8 +13,6 @@ public class BoardController {
      * @param boardIn   The current state of the board.
      * @param direction Move.
      * @return The state of the board after the move has been made.
-     * @requires direction to be a valid move and boardIn to be a valid board and current.
-     * @ensures A board with the move having been made is returned.
      */
     public static String[][] singleMove(String[][] boardIn, int direction)
     {
@@ -77,13 +75,10 @@ public class BoardController {
     /**
      * Makes a double move and returns the resulting board.
      *
-     * @param boardIn         The current state of the board.
-     * @param firstDirection  First move.
+     * @param boardIn The current state of the board.
+     * @param firstDirection First move.
      * @param secondDirection Second move.
      * @return The state of the board after the double move has been made.
-     * @requires firstDirection and secondDirection to be valid moves
-     * and boardIn to be a valid board and current.
-     * @ensures A board with the moves having been made is returned.
      */
     public static String[][] doubleMove(String[][] boardIn, int firstDirection, int secondDirection)
     {
@@ -97,8 +92,6 @@ public class BoardController {
      *
      * @param boardIn The current state of the board.
      * @return A list of valid single moves.
-     * @requires boardIn to be valid and current.
-     * @ensures The returned list is valid.
      */
     public static List<Integer> listSingleMove(String[][] boardIn)
     {
@@ -106,7 +99,7 @@ public class BoardController {
         for (int direction = 0; direction < 28; direction++)
         {
             String[][] imaginaryBoard = copyBoard(boardIn);
-            imaginaryBoard = singleMove(imaginaryBoard, direction);
+            singleMove(imaginaryBoard, direction);
 
             for (int y = 1; y < 8; y++)
             {
@@ -132,8 +125,6 @@ public class BoardController {
      *
      * @param boardIn The current state of the board.
      * @return A list of valid double moves.
-     * @requires boardIn is valid and current.
-     * @ensures The returned list is valid.
      */
     public static List<Integer> listDoubleMove(String[][] boardIn)
     {
@@ -143,7 +134,7 @@ public class BoardController {
             for (int secondDirection = 0; secondDirection < 28; secondDirection++)
             {
                 String[][] imaginaryBoard = copyBoard(boardIn);
-                imaginaryBoard = doubleMove(imaginaryBoard, firstDirection, secondDirection);
+                doubleMove(imaginaryBoard, firstDirection, secondDirection);
 
                 for (int y = 1; y < 8; y++)
                 {
@@ -167,13 +158,11 @@ public class BoardController {
     }
 
     /**
-     * Checks if the single move that has been chosen is
-     * valid by comparing it to the list of valid double moves.
+     * Checks if the single move that has been chosen is valid by comparing it to the list of valid double moves.
      *
      * @param singleMoveListIn List of valid single moves.
      * @param direction        Single move.
      * @return true if the move is valid, else false.
-     * @requires singleMoveListIn to be valid
      */
     public static boolean checkSingleMove(List<Integer> singleMoveListIn, int direction)
     {
@@ -181,14 +170,12 @@ public class BoardController {
     }
 
     /**
-     * Checks if the double move that has been chosen is valid by comparing
-     * it to the list of valid double moves.
+     * Checks if the double move that has been chosen is valid by comparing it to the list of valid double moves.
      *
      * @param doubleMoveListIn List of valid double moves.
      * @param firstDirection   First move.
      * @param secondDirection  Second move.
      * @return true if the double move is valid, else false.
-     * @requires doubleMoveListIn to be valid
      */
     public static boolean checkDoubleMove(List<Integer> doubleMoveListIn, int firstDirection, int secondDirection)
     {
@@ -204,17 +191,11 @@ public class BoardController {
     }
 
     /**
-     * Removes the balls with the same colors that touch.
-     * Every tile is compared to the ones around it, and if two
-     * colors are the same, that tile is put in a list. All balls
-     * in the list are then removed.
+     * Removes the balls with the same colors that touch. Every tile is compared to the ones around it, and if two
+     * colors are the same, that tile is put in a list. All balls in the list are then removed.
      *
      * @param boardIn The current state of the board.
      * @return The board after the balls have been removed.
-     * @requires boardIn to be a board that is valid and in a state
-     * after a move or double move has been made, thus with
-     * touching colors.
-     * @ensures All the balls of the same colors that touch have been removed from the board.
      */
     public static String[][] removeBalls(String[][] boardIn)
     {
@@ -251,33 +232,29 @@ public class BoardController {
     }
 
     /**
-     * Gives a hint to the player during the game, if the
-     * player enters -1 as a move. The method returns a random
-     * valid move. It prints a single move if a single move can
-     * be made. If no single moves can be made, it prints a double
+     * Gives a hint to the player during the game, if the player enters -1 as a move. The method returns a random valid
+     * move. It prints a single move if a single move can be made. If no single moves can be made, it prints a double
      * move.
      *
      * @param singleMoveListIn The list of valid single moves.
      * @param doubleMoveListIn The list of valid double moves.
-     * @requires both singleMoveListIn and doubleMoveListIn are either empty or have valid moves.
-     * @ensures A hint is printed on the console.
      */
     public static void getHint(List<Integer> singleMoveListIn, List<Integer> doubleMoveListIn)
     {
+        Random randomNumber = new Random();
         if (!singleMoveListIn.isEmpty())
         {
-            Random randomNumber = new Random();
             System.out.println("Hint: " + singleMoveListIn.get(randomNumber.nextInt(singleMoveListIn.size())));
         }
         else
         {
-            Random randomNumber = new Random();
             int randomMove = randomNumber.nextInt(doubleMoveListIn.size());
             if (randomMove % 2 == 1)
             {
                 randomMove -= 1;
             }
-            System.out.println("Hint: " + doubleMoveListIn.get(randomMove) + " and " + doubleMoveListIn.get(randomMove + 1));
+            System.out.println("Hint: " + doubleMoveListIn.get(randomMove) + " and " +
+                    doubleMoveListIn.get(randomMove + 1));
         }
     }
 
@@ -286,19 +263,13 @@ public class BoardController {
      *
      * @param boardIn The current state of the board.
      * @return A copy of the board.
-     * @requires boardIn to be not null, be a valid board and the respect the template.
-     * @ensures A copy of boardIn is made that does not point to the same place in the
-     * memory as the original.
      */
     public static String[][] copyBoard(String[][] boardIn)
     {
         String[][] boardCopy = new String[9][9];
         for (int y = 0; y < 9; y++)
         {
-            for (int x = 0; x < 9; x++)
-            {
-                boardCopy[y][x] = boardIn[y][x];
-            }
+            System.arraycopy(boardIn[y], 0, boardCopy[y], 0, 9);
         }
         return boardCopy;
     }

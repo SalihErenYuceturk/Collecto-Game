@@ -9,7 +9,6 @@ public class BoardChecker
      *
      * @param boardIn The board to be checked.
      * @return true if correct, else false.
-     * @requires boardIn != null
      */
     public static boolean checkBallCount(String[][] boardIn)
     {
@@ -69,7 +68,6 @@ public class BoardChecker
      *
      * @param boardIn Board to be checked.
      * @return true if no two same colors touch, else false.
-     * @requires boardIn != null and uses the board template
      */
     public static boolean checkArrangement(String[][] boardIn)
     {
@@ -91,11 +89,10 @@ public class BoardChecker
     }
 
     /**
-     * Check that both methods that check a valid board return true.
+     * Checks that both methods that check a valid board return true.
      *
      * @param boardIn Board to be checked.
      * @return true if the board is valid, else false.
-     * @requires boardIn != null and uses the board template
      */
     public static boolean isValid(String[][] boardIn)
     {

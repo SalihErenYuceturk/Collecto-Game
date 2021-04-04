@@ -3,13 +3,13 @@ package Logic;
 public class BoardConstants
 {
     public static final int SIZE = 7;
-    public static final String BLUE  =  "\u001B[38;2;0;0;255m  blue  \u001B[0m";
+    public static final String BLUE = "\u001B[38;2;0;0;255m  blue  \u001B[0m";
     public static final String YELLOW = "\u001B[38;2;255;255;0m yellow \u001B[0m";
-    public static final String RED =    "\u001B[38;2;255;0;0m  red   \u001B[0m";
+    public static final String RED = "\u001B[38;2;255;0;0m  red   \u001B[0m";
     public static final String ORANGE = "\u001B[38;2;255;165;0m orange \u001B[0m";
     public static final String PURPLE = "\u001B[38;2;128;0;128m purple \u001B[0m";
-    public static final String GREEN =  "\u001B[38;2;0;255;0m green  \u001B[0m";
-    public static final String EMPTY =  "        ";
+    public static final String GREEN = "\u001B[38;2;0;255;0m green  \u001B[0m";
+    public static final String EMPTY = "        ";
     public static final String[] COLORS = new String[] {BLUE, YELLOW, RED, ORANGE, PURPLE, GREEN};
     public static final String[][] TEMPLATE = new String[][]
             {

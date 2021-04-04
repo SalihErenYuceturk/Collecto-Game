@@ -2,7 +2,7 @@ package IntegrationTest;
 
 import Logic.Board;
 import Logic.Game;
-import Logic.GeneralPlayer;
+import Logic.Player;
 import Logic.EasyComputer;
 import Logic.HardComputer;
 import Logic.Human;
@@ -16,7 +16,7 @@ public class GameDemo
     {
         Scanner keyboard = new Scanner(System.in);
 
-        System.out.println("Collecto Game");
+        System.out.println("<<< Collecto Game >>>");
 
         System.out.println("Choose Player 1:");
         System.out.println("[1] Human");
@@ -36,33 +36,19 @@ public class GameDemo
         keyboard.nextLine();
         String player2Name = keyboard.nextLine();
 
-        GeneralPlayer player1 = null;
-        GeneralPlayer player2 = null;
+        Player player1 = null;
+        Player player2 = null;
 
-        switch (player1Choice)
-        {
-            case 1:
-                player1 = new Human(player1Name);
-                break;
-            case 2:
-                player1 = new EasyComputer(player1Name);
-                break;
-            case 3:
-                player1 = new HardComputer(player1Name);
-                break;
+        switch (player1Choice) {
+            case 1 -> player1 = new Human(player1Name);
+            case 2 -> player1 = new EasyComputer(player1Name);
+            case 3 -> player1 = new HardComputer(player1Name);
         }
 
-        switch (player2Choice)
-        {
-            case 1:
-                player2 = new Human(player2Name);
-                break;
-            case 2:
-                player2 = new EasyComputer(player2Name);
-                break;
-            case 3:
-                player2 = new HardComputer(player2Name);
-                break;
+        switch (player2Choice) {
+            case 1 -> player2 = new Human(player2Name);
+            case 2 -> player2 = new EasyComputer(player2Name);
+            case 3 -> player2 = new HardComputer(player2Name);
         }
 
         int turn = 0;
@@ -72,7 +58,8 @@ public class GameDemo
         while (true)
         {
             turn += 1;
-            System.out.println("\n" + "\n" + "------------------------------------------------------------------------------------------");
+            System.out.println("\n" + "\n" +
+                    "------------------------------------------------------------------------------------------");
             System.out.println("Turn: " + turn);
             gameBoard.printBoard();
             game.getTurn().printPlayer();
@@ -98,13 +85,14 @@ public class GameDemo
                 }
                 else if (game.getTurn() instanceof EasyComputer)
                 {
-                    ((EasyComputer) game.getTurn()).makeSingleMove(gameBoard.getSingleMoveList(), gameBoard.getBoard());
+                    ((EasyComputer) game.getTurn()).makeSingleMove(gameBoard.getSingleMoveList());
                 } else if (game.getTurn() instanceof HardComputer) {
                     ((HardComputer) game.getTurn()).makeSingleMove(gameBoard.getSingleMoveList(), gameBoard.getBoard());
                 }
                 if (BoardController.checkSingleMove(gameBoard.getSingleMoveList(), game.getTurn().getSingleMove()))
                 {
-                    gameBoard.setBoard(BoardController.singleMove(gameBoard.getBoard(), game.getTurn().getSingleMove()));
+                    gameBoard.setBoard(BoardController.singleMove(gameBoard.getBoard(),
+                            game.getTurn().getSingleMove()));
                     game.getTurn().updateScore(gameBoard.getBoard());
                     gameBoard.setBoard(BoardController.removeBalls(gameBoard.getBoard()));
                 }
@@ -136,15 +124,17 @@ public class GameDemo
                 }
                 else if (game.getTurn() instanceof EasyComputer)
                 {
-                    ((EasyComputer) game.getTurn()).makeDoubleMove(gameBoard.getDoubleMoveList(), gameBoard.getBoard());
+                    ((EasyComputer) game.getTurn()).makeDoubleMove(gameBoard.getDoubleMoveList());
                 }
                 else if (game.getTurn() instanceof HardComputer)
                 {
-                    ((HardComputer) game.getTurn()).makeDoubleMove(gameBoard.getDoubleMoveList(), gameBoard.getBoard());
+                    ((HardComputer) game.getTurn()).makeDoubleMove(gameBoard.getDoubleMoveList());
                 }
-                if (BoardController.checkDoubleMove(gameBoard.getDoubleMoveList(), game.getTurn().getFirstMove(), game.getTurn().getSecondMove()))
+                if (BoardController.checkDoubleMove(gameBoard.getDoubleMoveList(), game.getTurn().getFirstMove(),
+                        game.getTurn().getSecondMove()))
                 {
-                    gameBoard.setBoard(BoardController.doubleMove(gameBoard.getBoard(), game.getTurn().getFirstMove(), game.getTurn().getSecondMove()));
+                    gameBoard.setBoard(BoardController.doubleMove(gameBoard.getBoard(), game.getTurn().getFirstMove(),
+                            game.getTurn().getSecondMove()));
                     gameBoard.setBoard(BoardController.removeBalls(gameBoard.getBoard()));
                 }
                 else
@@ -155,7 +145,8 @@ public class GameDemo
             }
             else if (gameBoard.getSingleMoveList().isEmpty() && gameBoard.getDoubleMoveList().isEmpty())
             {
-                System.out.println("\n" + "\n" + "------------------------------------------------------------------------------------------");
+                System.out.println("\n" + "\n" +
+                        "------------------------------------------------------------------------------------------");
                 System.out.println("Game Over!");
                 if (game.getWinner() == null)
                 {

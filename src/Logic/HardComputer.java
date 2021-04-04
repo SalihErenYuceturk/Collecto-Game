@@ -4,14 +4,13 @@ import java.util.*;
 
 import static Logic.BoardConstants.*;
 
-public class HardComputer extends GeneralPlayer
+public class HardComputer extends Player
 {
 
     /**
      * Class constructor.
      *
      * @param nameIn Name of the player. A name is chosen regardless of the kind of player.
-     * @requires nameIn != null
      */
     public HardComputer(String nameIn)
     {
@@ -24,19 +23,17 @@ public class HardComputer extends GeneralPlayer
      * The hard computer will choose a move that removes the most balls from the list.
      *
      * @param singleMoveListIn List of single moves.
-     * @param boardIn          State of the game board.
-     * @requires singleMoveListIn and boardIn are both valid and current
-     * @ensures a valid move is chosen and singleMove is updated to the most current choice
+     * @param boardIn State of the game board.
      */
     public void makeSingleMove(List<Integer> singleMoveListIn, String[][] boardIn)
     {
-        HashMap<Integer, Integer> moveResult = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> moveResult = new HashMap<>();
         int moveResultIndex = 0;
 
         for (int move : singleMoveListIn)
         {
             String[][] imaginaryBoard = BoardController.copyBoard(boardIn);
-            imaginaryBoard = BoardController.singleMove(imaginaryBoard, move);
+            BoardController.singleMove(imaginaryBoard, move);
             int numberOfBallsRemoved = 0;
 
             for (int y = 1; y < 8; y++)
@@ -58,7 +55,7 @@ public class HardComputer extends GeneralPlayer
             moveResult.put(moveResultIndex, numberOfBallsRemoved);
             moveResultIndex += 1;
         }
-        ArrayList<Integer> moveResultValues = new ArrayList<Integer>(moveResult.values());
+        ArrayList<Integer> moveResultValues = new ArrayList<>(moveResult.values());
         int maximumNumberOfBallsRemoved = Collections.max(moveResultValues);
         this.singleMove = singleMoveListIn.get(moveResultValues.indexOf(maximumNumberOfBallsRemoved));
     }
@@ -67,13 +64,9 @@ public class HardComputer extends GeneralPlayer
      * The computer player decides on a double move to make.
      *
      * @param doubleMoveListIn List of double moves.
-     * @param boardIn          State of the game board.
-     * @requires doubleMoveListIn and boardIn are both valid and current.
-     * @ensures doubleMove is updated with a valid double move.
      */
-    public void makeDoubleMove(List<Integer> doubleMoveListIn, String[][] boardIn)
+    public void makeDoubleMove(List<Integer> doubleMoveListIn)
     {
-        String[][] imaginaryBoard = BoardController.copyBoard(boardIn);
         this.doubleMove.clear();
         Random randomNumber = new Random();
         int randomMove = randomNumber.nextInt(doubleMoveListIn.size());

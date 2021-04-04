@@ -43,7 +43,7 @@ public class EasyComputerTest
     void makeSingleMoveEasy()
     {
         List<Integer> singleMoveList = BoardController.listSingleMove(testArrayForSingleMove);
-        testEasyComputer.makeSingleMove(singleMoveList, testArrayForSingleMove);
+        testEasyComputer.makeSingleMove(singleMoveList);
         assertTrue(singleMoveList.contains(testEasyComputer.getSingleMove()));
     }
 
@@ -51,7 +51,7 @@ public class EasyComputerTest
     void makeDoubleMoveEasy()
     {
         List<Integer> doubleMoveList = BoardController.listDoubleMove(testArrayForDoubleMove);
-        testEasyComputer.makeDoubleMove(doubleMoveList, testArrayForDoubleMove);
+        testEasyComputer.makeDoubleMove(doubleMoveList);
         assertTrue(doubleMoveList.contains(testEasyComputer.getFirstMove()));
         assertTrue(doubleMoveList.contains(testEasyComputer.getSecondMove()));
     }
