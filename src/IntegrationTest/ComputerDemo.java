@@ -7,6 +7,12 @@ import Logic.HardComputer;
 import Logic.GeneralPlayer;
 import Logic.BoardController;
 
+/*
+This is a test of the two computer difficulty levels. 100 games are played and the final result is printed.
+The assumption is that the hard difficulty will win most of the games against the easy difficulty and this
+is indeed the case.
+*/
+
 public class ComputerDemo
 {
     public static void main(String[] args)
